@@ -201,3 +201,73 @@ void Tree::Print(TTreeView* treeView, Node* current, int kl)
 	}
 	kl--;
 }
+
+int Tree::GetAmount(int amount, Node* current)
+{
+	if(current != NULL)
+	{
+		amount++;
+		amount = GetAmount(amount, current->left);
+		amount = GetAmount(amount, current->right);
+	}
+	return amount;
+}
+
+void Tree::FillArr(Node* current, int* arr, UnicodeString* logArr, int* index)
+{
+    if(current != NULL)
+	{
+		*index = (*index) + 1;
+		arr[*index] = current->id;
+		logArr[*index] = current->login;
+		FillArr(current->left, arr, logArr, index);
+		FillArr(current->right, arr, logArr, index);
+
+	}
+}
+
+void Tree::SortArr(int *arr, UnicodeString *logArr, int amount)
+{
+	for(int i = 1; i < amount; i++)
+	{
+		for(int j = i; arr[j] < arr[j - 1] && j > 0; j--)
+		{
+			if(arr[j] < arr[j-1])
+			{
+				int temp = arr[j];
+				arr[j] = arr[j-1];
+				arr[j-1] = temp;
+				UnicodeString temp1 = logArr[j];
+				logArr[j] = logArr[j-1];
+				logArr[j-1] = temp1;
+			}
+		}
+    }
+}
+
+void Tree::Foo()
+{
+	int amount = 0;
+	amount = GetAmount(amount, root);
+	int* arr = new int[amount];
+	UnicodeString* logArr = new UnicodeString[amount];
+	int* index = new int;
+	*index = -1;
+	FillArr(root, arr, logArr, index);
+	SortArr(arr, logArr, amount);
+
+
+	Balance(&root, arr, logArr, 0, amount - 1);
+
+}
+
+void Tree::Balance(Node **current, int intArr[], UnicodeString strArr[], int start, int end)
+{
+	if (start <= end)
+	{
+		int mid = (start + end + 1) / 2;
+		*current = new Node(strArr[mid], intArr[mid]);
+		Balance(&((*current)->left), intArr, strArr, start, mid - 1);
+		Balance(&((*current)->right), intArr, strArr, mid + 1, end);
+	}
+}

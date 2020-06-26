@@ -3,7 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "MainForm.h".h"
+#include "MainForm.h"
 #include "Tree.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -79,6 +79,13 @@ void __fastcall TForm1::Button7Click(TObject *Sender)
 		tree->Print(TreeView1);
 	}
 
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button8Click(TObject *Sender)
+{
+	tree->Foo();
+    tree->Print(TreeView1);
 }
 //---------------------------------------------------------------------------
 

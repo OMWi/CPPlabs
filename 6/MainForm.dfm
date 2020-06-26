@@ -129,4 +129,13 @@ object Form1: TForm1
     TabOrder = 12
     TextHint = 'id'
   end
+  object Button8: TButton
+    Left = 216
+    Top = 62
+    Width = 113
+    Height = 25
+    Caption = #1041#1072#1083#1072#1085#1089#1080#1088#1086#1074#1072#1090#1100
+    TabOrder = 13
+    OnClick = Button8Click
+  end
 end

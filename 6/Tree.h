@@ -31,6 +31,10 @@ class Tree
 	void ObrObh(Node* current, TMemo* memo);
 	Node* GetNearest(Node* current, Node* min, float minDist, float average);
 	void Print(TTreeView* treeView, Node* current, int kl);
+	int GetAmount(int amount, Node* current);
+	void FillArr(Node* current, int* arr, UnicodeString* logArr, int* index);
+	void SortArr(int *arr, UnicodeString *logArr, int amount);
+	void Balance(Node **current, int* intArr, UnicodeString* strArr, int start, int end);
 public:
 	Tree()
 	{
@@ -46,6 +50,7 @@ public:
 	void ObrObh(TMemo* memo);
 	Node* GetNearest();
 	void Print(TTreeView* treeView);
+	void Foo();
 	~Tree()
 	{
 		DeleteTree(root);
